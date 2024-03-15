@@ -44,8 +44,10 @@ extension DefaultKeys {
 }
 ```
 ### Custome Container <a name="sub-topic-1.1"></a>
-
-
+You can also store your userDefaults in a custome container like so: 
+```swift
+@UserDefaults(key: "previewShown", .init(suiteName: "YourCustomeContainerName")) var previewShown = false
+```
 ### Supported Data <a name="sub-topic-1.2"></a>
 This is another sub-topic within Section 1.
 
