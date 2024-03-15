@@ -8,34 +8,39 @@
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Section 1](#section-1)
-   - [Sub-topic 1.1](#sub-topic-1.1)
-   - [Sub-topic 1.2](#sub-topic-1.2)
-3. [Section 2](#section-2)
-   - [Sub-topic 2.1](#sub-topic-2.1)
-   - [Sub-topic 2.2](#sub-topic-2.2)
-4. [Conclusion](#conclusion)
+2. [How to use](#section-1)
+   - [Supported Data](#sub-topic-1.2)
+3. [Storing Custome Data](#section-2)
+   - [Example 1 Enums](#sub-topic-2.1)
+   - [Example 2 Custom Array type](#sub-topic-2.2)
+4. [Author](#conclusion)
 
 ## Introduction <a name="introduction"></a>
-This Package is designed to be very simple to use and to make you access user defaults easily, adding this package to the project is simple. 
-Just add the pacakge link to the main pacakge of the app like so:
+This package is crafted for effortless integration and streamlined access to user defaults. Adding it to your project is straightforward: simply include the package link in the main app package like this:"
 
-## Section 1 <a name="section-1"></a>
+<img width="600" alt="Screenshot 2024-03-15 at 3 28 47 AM" src="https://github.com/EngOmarElsayed/SwiftUserDefaults/assets/125718818/749fcc36-13c9-4b04-84b8-c93893162a3d">
+
+Alternatively, navigate to the top section labeled 'Files' and click on 'Add Package Dependency':
+
+<img width="300" alt="Screenshot 2024-03-15 at 3 33 08 AM" src="https://github.com/EngOmarElsayed/SwiftUserDefaults/assets/125718818/835a99dc-6ed3-4e35-9ed2-4458ec6935de">
+
+Next, paste the repository link into the search field and click on 'Add Package':
+
+<img width="300" alt="Screenshot 2024-03-15 at 3 34 52 AM" src="https://github.com/EngOmarElsayed/SwiftUserDefaults/assets/125718818/2d5ba858-9e78-4517-a233-85fb936fd4a1">
+
+## How to use <a name="section-1"></a>
 This is the first section of your document. You can write your content here. Feel free to include sub-sections, lists, code snippets, or any other Markdown elements as needed.
 
-### Sub-topic 1.1 <a name="sub-topic-1.1"></a>
-This is a sub-topic within Section 1.
-
-### Sub-topic 1.2 <a name="sub-topic-1.2"></a>
+### Supported Data <a name="sub-topic-1.2"></a>
 This is another sub-topic within Section 1.
 
-## Section 2 <a name="section-2"></a>
+## Storing Custome Data <a name="section-2"></a>
 This is the second section of your document. You can write your content here, similar to Section 1.
 
-### Sub-topic 2.1 <a name="sub-topic-2.1"></a>
+### Example 1 Enums <a name="sub-topic-2.1"></a>
 This is a sub-topic within Section 2.
 
-### Sub-topic 2.2 <a name="sub-topic-2.2"></a>
+### Example 2 Custom Array type <a name="sub-topic-2.2"></a>
 This is another sub-topic within Section 2.
 
 ## Conclusion <a name="conclusion"></a>
