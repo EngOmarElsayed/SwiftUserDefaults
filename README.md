@@ -1,2 +1,5 @@
-
+![Platforms](https://img.shields.io/badge/platforms-ios%20%7C%20osx%20%7C%20watchos%20%7C%20tvos-lightgrey.svg)
 ![example workflow](https://github.com/EngOmarElsayed/SwiftUserDefaults/actions/workflows/swift.yml/badge.svg)
+[![SPM compatible](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)](#swift-package-manager)
+![Swift version](https://img.shields.io/badge/swift-5.7-orange.svg)
+![Swift version](https://img.shields.io/badge/swift-5.9-orange.svg)
