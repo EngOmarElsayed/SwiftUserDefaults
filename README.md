@@ -79,10 +79,24 @@ struct CustomeData: DefaultsCustomDataType {
 `DefaultsCustomDataType` is a `public` `protocol` that conforms to the `Codable` protocol. It serves as a bridge, allowing the API to easily detect whether this data type needs to be encoded or not.
 
 ### Example 1 Enums <a name="sub-topic-2.1"></a>
-This is a sub-topic within Section 2.
+Storing an `Enum` is straightforward; simply ensure that the `Enum` conforms to `DefaultsCustomDataType`, as shown below:
 
+```swift
+enum CustomeData: DefaultsCustomDataType {
+case none
+}
+@UserDefaults(key: "customeData") var customeData: CustomeData = .none
+```
 ### Example 2 Custom Array type <a name="sub-topic-2.2"></a>
-This is another sub-topic within Section 2.
+Storing custom `Array` types is even simpler just ensure that the `Element` type of the `Array` conforms to `DefaultsCustomDataType`, as demonstrated below:
+
+```swift
+struct CustomeData: DefaultsCustomDataType {
+init()
+}
+@UserDefaults(key: "customeData") var customeData: [CustomeData] = [CustomeData()]
+```
+And that's all there is to it! 🚀 Enjoy using this Swifty package.
 
 ## Conclusion <a name="conclusion"></a>
 This is the conclusion section of your document. You can summarize the key points discussed in your document here.
