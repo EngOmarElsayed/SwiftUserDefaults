@@ -30,13 +30,13 @@ Next, paste the repository link into the search field and click on 'Add Package'
 <img width="300" alt="Screenshot 2024-03-15 at 3 34 52 AM" src="https://github.com/EngOmarElsayed/SwiftUserDefaults/assets/125718818/2d5ba858-9e78-4517-a233-85fb936fd4a1">
 
 ## How to use <a name="section-1"></a>
-Utilizing this API is designed to be straightforward and as effortless as using the @AppStorage API. Simply add this property wrapper to your variable and provide it with a key - that's all there is to it
+Utilizing this API is designed to be straightforward and as effortless as using the `@AppStorage` API. Simply add this property wrapper to your `variable` and provide it with a key - that's all there is to it
 
 ```swift
 @UserDefaults(key: "previewShown") var previewShown = false // false is the default value
 ```
 
-To help you better organize your UserDefaults keys, I've created an enum called DefaultKeys to store them. Just extend the enum and add new keys as static properties like this:
+To help you better organize your UserDefaults keys, I've created an `enum` called `DefaultKeys` to store them. Just extend the `enum` and add new keys as `static` properties like this:
 
 ```swift
 extension DefaultKeys {
@@ -44,12 +44,27 @@ extension DefaultKeys {
 }
 ```
 ### Custome Container <a name="sub-topic-1.1"></a>
-You can also store your userDefaults in a custome container like so: 
+You can also store your userDefaults in a custome `container` like so: 
 ```swift
 @UserDefaults(key: "previewShown", .init(suiteName: "YourCustomeContainerName")) var previewShown = false
 ```
 ### Supported Data <a name="sub-topic-1.2"></a>
-This is another sub-topic within Section 1.
+SwiftUserDefaults supports all of the standard `NSUserDefaults` types, like `String`, `Int`, `Bool`, `Array` and much more.
+
+Here's a full table of built-in single value defaults:
+
+| Single value     | Array                |
+| ---------------- | -------------------- |
+| `String`         | `[String]`           |
+| `Int`            | `[Int]`              |
+| `Double`         | `[Double]`           |
+| `Bool`           | `[Bool]`             |
+| `Data`           | `[Data]`             |
+| `Date`           | `[Date]`             |
+| `URL`            | `[URL]`              |
+| `[String: Any]`  | `[[String: Any]]`    |
+
+But you can also support custome data types 🚀
 
 ## Storing Custome Data <a name="section-2"></a>
 This is the second section of your document. You can write your content here, similar to Section 1.
