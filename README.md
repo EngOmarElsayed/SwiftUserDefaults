@@ -1,1 +1,1 @@
-http.https://github.com/.extraheader
+https://github.com/.extraheader
