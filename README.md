@@ -17,7 +17,8 @@
 4. [Conclusion](#conclusion)
 
 ## Introduction <a name="introduction"></a>
-This is the introduction section of your document. You can introduce the topic or provide any necessary background information here.
+This Package is designed to be very simple to use and to make you access user defaults easily, adding this package to the project is simple. 
+Just add the pacakge link to the main pacakge of the app like so:
 
 ## Section 1 <a name="section-1"></a>
 This is the first section of your document. You can write your content here. Feel free to include sub-sections, lists, code snippets, or any other Markdown elements as needed.
