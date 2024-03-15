@@ -67,9 +67,16 @@ Here's a full table of built-in single value defaults:
 But you can also support custome data types 🚀
 
 ## Storing Custome Data <a name="section-2"></a>
-Storing custome data type is fairly easy, you don't have to do anything expecte making the custome data type confirm to `DefaultsCustomDataType` like this:
+Storing custom data types is straightforward; you only need to ensure that the custom data type conforms to `DefaultsCustomDataType`, as demonstrated below:
 
-`DefaultsCustomDataType` is a `public` `protocol` that conforms to `Codable` `protocol`, this made to be a bridge to make the API detect easily that this data type needs to be encoded or not.
+```swift
+struct CustomeData: DefaultsCustomDataType {
+ init()
+}
+@UserDefaults(key: "customeData") var customeData = CustomeData()
+```
+
+`DefaultsCustomDataType` is a `public` `protocol` that conforms to the `Codable` protocol. It serves as a bridge, allowing the API to easily detect whether this data type needs to be encoded or not.
 
 ### Example 1 Enums <a name="sub-topic-2.1"></a>
 This is a sub-topic within Section 2.
