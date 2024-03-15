@@ -73,6 +73,15 @@ internal final class UserDefaultsTests: XCTestCase {
     XCTAssertEqual(testValue.id, expectedResult.id, "Expected to have the same value got \(testValue.id)")
   }
   
+  func test_UserDefaultWrapper_retrievingDataTypeAfterInitializingValue() {
+    let expectedResult = Data()
+    @UserDefault(key: DefaultKeys.testKey) var testValue = Data()
+    
+    testValue = expectedResult
+    
+    XCTAssertEqual(testValue, expectedResult, "Expected to have the same value got \(testValue)")
+  }
+  
   private func deleteArtifactsFromUserDefaults() {
     UserDefaults.standard.removeObject(forKey: DefaultKeys.testKey)
   }
