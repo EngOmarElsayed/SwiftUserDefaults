@@ -26,7 +26,7 @@ import Foundation
 public struct UserDefault<Value: Codable> {
   private let key: String
   private let defaultValue: Value
-  private var container: UserDefaults = .standard
+  private let container: UserDefaults = .standard
   
   public var wrappedValue: Value {
     get {
