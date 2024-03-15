@@ -98,9 +98,6 @@ init()
 ```
 And that's all there is to it! 🚀 Enjoy using this Swifty package.
 
-## Conclusion <a name="conclusion"></a>
-This is the conclusion section of your document. You can summarize the key points discussed in your document here.
+## Author <a name="conclusion"></a>
+This pacakge was created by [Eng.Omar Elsayed](https://www.linkedin.com/in/engomarelsayed/) to helpe the iOS comuntity and make there life easir. To contact me email me at eng.omar.elsayed@hotmail.com
 
-## References
-- [Reference 1](#)
-- [Reference 2](#)
