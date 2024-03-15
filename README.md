@@ -17,7 +17,7 @@
 5. [Author](#conclusion)
 
 ## Introduction <a name="introduction"></a>
-This package is crafted for effortless integration and streamlined access to user defaults. Adding it to your project is straightforward: simply include the package link in the main app package like this:"
+This package is crafted for effortless integration and streamlined access to user defaults plus it supports the new privacy rules from WWDC23. Adding it to your project is straightforward: simply include the package link in the main app package like this:"
 
 <img width="600" alt="Screenshot 2024-03-15 at 3 28 47 AM" src="https://github.com/EngOmarElsayed/SwiftUserDefaults/assets/125718818/749fcc36-13c9-4b04-84b8-c93893162a3d">
 
@@ -43,6 +43,13 @@ extension DefaultKeys {
   static let previewShown = "previewShown"
 }
 ```
+
+> [!NOTE]  
+> You can also store optional values just like that:
+> ```swift
+> @UserDefaults(key: "previewShown") var previewShown: Bool?
+> ```
+
 ### Custome Container <a name="sub-topic-1.1"></a>
 You can also store your userDefaults in a custome `container` like so: 
 ```swift
@@ -67,19 +74,37 @@ Here's a full table of built-in single value defaults:
 But you can also support custome data types 🚀
 
 ## Storing Custome Data <a name="section-2"></a>
-Storing custome data type is fairly easy, you don't have to do anything expecte making the custome data type confirm to `DefaultsCustomDataType` like this:
+Storing custom data types is straightforward; you only need to ensure that the custom data type conforms to `DefaultsCustomDataType`, as demonstrated below:
 
-`DefaultsCustomDataType` is a `public` `protocol` that conforms to `Codable` `protocol`, this made to be a bridge to make the API detect easily that this data type needs to be encoded or not.
+```swift
+struct CustomeData: DefaultsCustomDataType {
+ init()
+}
+@UserDefaults(key: "customeData") var customeData = CustomeData()
+```
+
+`DefaultsCustomDataType` is a `public` `protocol` that conforms to the `Codable` protocol. It serves as a bridge, allowing the API to easily detect whether this data type needs to be encoded or not.
 
 ### Example 1 Enums <a name="sub-topic-2.1"></a>
-This is a sub-topic within Section 2.
+Storing an `Enum` is straightforward; simply ensure that the `Enum` conforms to `DefaultsCustomDataType`, as shown below:
 
+```swift
+enum CustomeData: DefaultsCustomDataType {
+case none
+}
+@UserDefaults(key: "customeData") var customeData: CustomeData = .none
+```
 ### Example 2 Custom Array type <a name="sub-topic-2.2"></a>
-This is another sub-topic within Section 2.
+Storing custom `Array` types is even simpler just ensure that the `Element` type of the `Array` conforms to `DefaultsCustomDataType`, as demonstrated below:
 
-## Conclusion <a name="conclusion"></a>
-This is the conclusion section of your document. You can summarize the key points discussed in your document here.
+```swift
+struct CustomeData: DefaultsCustomDataType {
+init()
+}
+@UserDefaults(key: "customeData") var customeData: [CustomeData] = [CustomeData()]
+```
+And that's all there is to it! 🚀 Enjoy using this Swifty package.
 
-## References
-- [Reference 1](#)
-- [Reference 2](#)
+## Author <a name="conclusion"></a>
+This pacakge was created by [Eng.Omar Elsayed](https://www.linkedin.com/in/engomarelsayed/) to helpe the iOS comuntity and make there life easir. To contact me email me at eng.omar.elsayed@hotmail.com
+
