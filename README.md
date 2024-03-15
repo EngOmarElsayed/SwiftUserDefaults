@@ -67,7 +67,9 @@ Here's a full table of built-in single value defaults:
 But you can also support custome data types 🚀
 
 ## Storing Custome Data <a name="section-2"></a>
-This is the second section of your document. You can write your content here, similar to Section 1.
+Storing custome data type is fairly easy, you don't have to do anything expecte making the custome data type confirm to `DefaultsCustomDataType` like this:
+
+`DefaultsCustomDataType` is a `public` `protocol` that conforms to `Codable` `protocol`, this made to be a bridge to make the API detect easily that this data type needs to be encoded or not.
 
 ### Example 1 Enums <a name="sub-topic-2.1"></a>
 This is a sub-topic within Section 2.
