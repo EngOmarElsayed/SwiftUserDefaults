@@ -43,9 +43,9 @@ extension UserDefault {
     let data = container.object(forKey: key)
     
     if let data = data as? Data {
-      return decode(consume data) ?? defaultValue
+      return decode(data) ?? defaultValue
     } else {
-      return consume data as? Value ?? defaultValue
+      return data as? Value ?? defaultValue
     }
   }
   
@@ -67,7 +67,7 @@ extension UserDefault {
   private func encode(newValue: DefaultsCustomDataType) {
     let encoder = JSONEncoder()
     let data = try? encoder.encode(newValue)
-    container.set(consume data, forKey: key)
+    container.set(data, forKey: key)
   }
   
   private func decode(_ data: Data) -> Value? {
