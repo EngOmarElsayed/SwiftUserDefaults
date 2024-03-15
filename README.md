@@ -17,7 +17,7 @@
 5. [Author](#conclusion)
 
 ## Introduction <a name="introduction"></a>
-This package is crafted for effortless integration and streamlined access to user defaults. Adding it to your project is straightforward: simply include the package link in the main app package like this:"
+This package is crafted for effortless integration and streamlined access to user defaults plus it supports the new privacy rules from WWDC23. Adding it to your project is straightforward: simply include the package link in the main app package like this:"
 
 <img width="600" alt="Screenshot 2024-03-15 at 3 28 47 AM" src="https://github.com/EngOmarElsayed/SwiftUserDefaults/assets/125718818/749fcc36-13c9-4b04-84b8-c93893162a3d">
 
@@ -43,6 +43,13 @@ extension DefaultKeys {
   static let previewShown = "previewShown"
 }
 ```
+
+> [!NOTE]  
+> You can also store optional values just like that:
+> ```swift
+> @UserDefaults(key: "previewShown") var previewShown: Bool?
+> ```
+
 ### Custome Container <a name="sub-topic-1.1"></a>
 You can also store your userDefaults in a custome `container` like so: 
 ```swift
