@@ -21,6 +21,10 @@
 import Foundation
 
 /// This protocol is made to make custom propertyWrapper work easily with optional values. Not indented to be used in any place outside the package.
-internal protocol AnyOptional {
+public protocol AnyOptional {
   var isNil: Bool { get }
+}
+
+extension Optional: AnyOptional {
+  public var isNil: Bool { self == nil }
 }
