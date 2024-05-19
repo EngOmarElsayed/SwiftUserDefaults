@@ -23,7 +23,7 @@ import UserDefaults
 
 internal final class UserDefaultsTests: XCTestCase {
     
-    override func setUp() {\
+    override func setUp() {
         super.setUp()
         deleteArtifactsFromUserDefaults(for: \.testKey)
     }
