@@ -24,69 +24,81 @@ import Foundation
 ///
 @frozen @propertyWrapper
 public struct UserDefault<Value: Codable> {
-  private let key: String
-  private let defaultValue: Value
-  private let container: UserDefaults
-  
-  public var wrappedValue: Value {
-    get {
-      return getObject(forKey: key)
+    private let key: String
+    private let defaultValue: Value
+    private let container: UserDefaults
+    
+    public var wrappedValue: Value {
+        get {
+            return getObject(forKey: key)
+        }
+        set {
+            set(newValue)
+        }
     }
-    set {
-      set(newValue)
+    
+    public init(wrappedValue: Value, _ keyPath: KeyPath<DefaultKeys, String>, container: UserDefaults = .standard) {
+        self.key = DefaultKeys[keyPath]
+        self.defaultValue = wrappedValue
+        self.container = container
     }
-  }
-  
-  public init(wrappedValue: Value, key: String, container: UserDefaults = .standard) {
-    self.key = key
-    self.defaultValue = wrappedValue
-    self.container = container
-  }
-  
+    
+    @available(*, deprecated, message: "Please use init(wrappedValue: Value, _ keyPath: KeyPath<DefaultKeys, String>, container: UserDefaults = .standard) instead for reference visit link: https://github.com/EngOmarElsayed/SwiftUserDefaults")
+    public init(wrappedValue: Value, _ key: String, container: UserDefaults = .standard) {
+        self.key = key
+        self.defaultValue = wrappedValue
+        self.container = container
+    }
+    
 }
 
 extension UserDefault where Value: ExpressibleByNilLiteral {
-  public init(key: String, _ container: UserDefaults = .standard) {
-    self.init(wrappedValue: nil, key: key, container: container)
-  }
+    public init(_ keyPath: KeyPath<DefaultKeys, String>, _ container: UserDefaults = .standard) {
+        self.init(wrappedValue: nil, keyPath, container: container)
+    }
+    
+    @available(*, deprecated, message: "Please use init(wrappedValue: Value, _ keyPath: KeyPath<DefaultKeys, String>, container: UserDefaults = .standard) instead for reference visit link: https://github.com/EngOmarElsayed/SwiftUserDefaults")
+    public init(_ keyPath: String, _ container: UserDefaults = .standard) {
+        self.init(wrappedValue: nil, keyPath, container: container)
+    }
 }
 
 //MARK: -  Set & Get of the UserDefault values
 extension UserDefault {
-  private func getObject(forKey: String) -> Value {
-    let data = container.object(forKey: key)
+    private func getObject(forKey: String) -> Value {
+        let data = container.object(forKey: key)
+        
+        if let data = data as? Data {
+            return decode(data) ?? defaultValue
+        } else {
+            return data as? Value ?? defaultValue
+        }
+    }
     
-    if let data = data as? Data {
-      return decode(data) ?? defaultValue
-    } else {
-      return data as? Value ?? defaultValue
+    private func set(_ newValue: Value) {
+        if let optional = newValue as? AnyOptional, optional.isNil {
+            container.removeObject(forKey: key)
+            
+        } else if let newValue = newValue as? DefaultsCustomDataType {
+            encode(newValue: newValue)
+            
+        } else {
+            container.set(newValue, forKey: key)
+        }
     }
-  }
-  
-  private func set(_ newValue: Value) {
-    if let optional = newValue as? AnyOptional, optional.isNil {
-      container.removeObject(forKey: key)
-      
-    } else if let newValue = newValue as? DefaultsCustomDataType {
-      encode(newValue: newValue)
-      
-    } else {
-      container.set(newValue, forKey: key)
-    }
-  }
 }
 
 //MARK: -  Decoding & Encoding
 extension UserDefault {
-  private func encode(newValue: DefaultsCustomDataType) {
-    let encoder = JSONEncoder()
-    let data = try? encoder.encode(newValue)
-    container.set(data, forKey: key)
-  }
-  
-  private func decode(_ data: Data) -> Value? {
-    let decoder = JSONDecoder()
-    let data = try? decoder.decode(Value.self, from: data)
-    return data
-  }
+    private func encode(newValue: DefaultsCustomDataType) {
+        let encoder = JSONEncoder()
+        let data = try? encoder.encode(newValue)
+        container.set(data, forKey: key)
+    }
+    
+    private func decode(_ data: Data) -> Value? {
+        let decoder = JSONDecoder()
+        let data = try? decoder.decode(Value.self, from: data)
+        return data
+    }
 }

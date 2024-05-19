@@ -20,4 +20,13 @@
 
 import Foundation
 /// This is the place where all the keys will be stored. To add a new key, just make an extension and declare a new static String value
-public enum DefaultKeys {}
+@frozen
+public struct DefaultKeys {
+    /// This is used to access the keys using the static subscript.
+    private static let current = DefaultKeys()
+    
+    /// This subscript is used to access the stored keys
+    public static subscript(_ key: KeyPath<DefaultKeys, String>) -> String {
+        return current[keyPath: key]
+    }
+}

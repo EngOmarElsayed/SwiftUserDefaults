@@ -22,76 +22,78 @@ import XCTest
 import UserDefaults
 
 internal final class UserDefaultsTests: XCTestCase {
-  
-  override func setUp() {
-    super.setUp()
-    deleteArtifactsFromUserDefaults()
-  }
-  
-  override func tearDown() {
-    super.tearDown()
-    deleteArtifactsFromUserDefaults()
-  }
-  
-  func test_UserDefaultWrapper_retrievingAfterInitializingValue() {
-    let expectedResult = 9
-    @UserDefault(key: DefaultKeys.testKey) var testValue = expectedResult
     
-    XCTAssertEqual(testValue, expectedResult, "Expected to have the same value")
-  }
-  
-  func test_UserDefaultWrapper_retrievingAfterOverRidingDefaultValue() {
-    let expectedResult = 9
-    @UserDefault(key: DefaultKeys.testKey) var testValue = 10
+    override func setUp() {\
+        super.setUp()
+        deleteArtifactsFromUserDefaults(for: \.testKey)
+    }
     
-    testValue = expectedResult
+    override func tearDown() {
+        super.tearDown()
+        deleteArtifactsFromUserDefaults(for: \.testKey)
+    }
     
-    XCTAssertEqual(testValue, expectedResult, "Expected to have the same value")
-  }
-  
-  func test_UserDefaultWrapper_retrievingAfterInitializingNilValue() {
-    @UserDefault(key: DefaultKeys.testKey) var testValue: Int?
+    func test_UserDefaultWrapper_retrievingAfterInitializingValue() {
+        let expectedResult = 9
+        @UserDefault(\.testKey) var testValue = expectedResult
+        
+        XCTAssertEqual(testValue, expectedResult, "Expected to have the same value")
+    }
     
-    XCTAssertNil(testValue, "Expected to be nil")
-  }
-  
-  func test_UserDefaultWrapper_retrievingAfterOverRidingNilValue() {
-    let expectedResult = 9
-    @UserDefault(key: DefaultKeys.testKey) var testValue: Int?
+    func test_UserDefaultWrapper_retrievingAfterOverRidingDefaultValue() {
+        let expectedResult = 9
+        @UserDefault(\.testKey) var testValue = 10
+        
+        testValue = expectedResult
+        
+        XCTAssertEqual(testValue, expectedResult, "Expected to have the same value")
+    }
     
-    testValue = expectedResult
+    func test_UserDefaultWrapper_retrievingAfterInitializingNilValue() {
+        @UserDefault(\.testKey) var testValue: Int?
+        
+        XCTAssertNil(testValue, "Expected to be nil")
+    }
     
-    XCTAssertEqual(testValue, expectedResult, "Expected to have the same value, got nil insted")
-  }
-  
-  func test_UserDefaultWrapper_retrievingCustomDataTypeAfterInitializingValue() {
-    let expectedResult = TestCustomType(id: 2)
-    @UserDefault(key: DefaultKeys.testKey) var testValue = TestCustomType(id: 5)
+    func test_UserDefaultWrapper_retrievingAfterOverRidingNilValue() {
+        let expectedResult = 9
+        @UserDefault(\.testKey) var testValue: Int?
+        
+        testValue = expectedResult
+        
+        XCTAssertEqual(testValue, expectedResult, "Expected to have the same value, got nil insted")
+    }
     
-    testValue = expectedResult
+    func test_UserDefaultWrapper_retrievingCustomDataTypeAfterInitializingValue() {
+        let expectedResult = TestCustomType(id: 2)
+        @UserDefault(\.testKey) var testValue = TestCustomType(id: 5)
+        
+        testValue = expectedResult
+        
+        XCTAssertEqual(testValue.id, expectedResult.id, "Expected to have the same value got \(testValue.id)")
+    }
     
-    XCTAssertEqual(testValue.id, expectedResult.id, "Expected to have the same value got \(testValue.id)")
-  }
-  
-  func test_UserDefaultWrapper_retrievingDataTypeAfterInitializingValue() {
-    let expectedResult = Data()
-    @UserDefault(key: DefaultKeys.testKey) var testValue = Data()
+    func test_UserDefaultWrapper_retrievingDataTypeAfterInitializingValue() {
+        let expectedResult = Data()
+        @UserDefault(\.testKey) var testValue = Data()
+        
+        testValue = expectedResult
+        
+        XCTAssertEqual(testValue, expectedResult, "Expected to have the same value got \(testValue)")
+    }
     
-    testValue = expectedResult
+    private func deleteArtifactsFromUserDefaults(for key: KeyPath<DefaultKeys, String>) {
+        UserDefaults.standard.removeObject(forKey: DefaultKeys[key])
+    }
     
-    XCTAssertEqual(testValue, expectedResult, "Expected to have the same value got \(testValue)")
-  }
-  
-  private func deleteArtifactsFromUserDefaults() {
-    UserDefaults.standard.removeObject(forKey: DefaultKeys.testKey)
-  }
-  
-  private struct TestCustomType: DefaultsCustomDataType {
-    let id: Int
-  }
-  
+    private struct TestCustomType: DefaultsCustomDataType {
+        let id: Int
+    }
+    
 }
 
 fileprivate extension DefaultKeys {
-  static let testKey = "testKey"
+    var testKey: String {
+        .init("testKey")
+    }
 }
