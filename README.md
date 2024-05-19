@@ -105,5 +105,5 @@ init()
 And that's all there is to it! 🚀 Enjoy using this Swifty package.
 
 ## Author <a name="conclusion"></a>
-This pacakge was created by [Eng.Omar Elsayed](https://www.linkedin.com/in/engomarelsayed/) to helpe the iOS comuntity and make there life easir. To contact me email me at eng.omar.elsayed@hotmail.com
+This pacakge was created by [Eng.Omar Elsayed](https://www.deveagency.com/) to help the iOS comuntity and make there life easir. To contact me email me at eng.omar.elsayed@hotmail.com
 
