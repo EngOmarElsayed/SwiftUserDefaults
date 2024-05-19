@@ -29,30 +29,28 @@ Next, paste the repository link into the search field and click on 'Add Package'
 <img width="300" alt="Screenshot 2024-03-15 at 3 34 52 AM" src="https://github.com/EngOmarElsayed/SwiftUserDefaults/assets/125718818/2d5ba858-9e78-4517-a233-85fb936fd4a1">
 
 ## How to use <a name="section-1"></a>
-Utilizing this API is designed to be straightforward and as effortless as using the `@AppStorage` API. Simply add this property wrapper to your `variable` and provide it with a key - that's all there is to it
+Utilizing this API is designed to be straightforward and as effortless as using the `@AppStorage` API But with more features. First this API is compile time safe and prevents any string typos. Simply declare your key in the `DefaultKeys` and then add the `@UserDefaults` to your `varible` as follows - that's all there is to it
 
 ```swift
-@UserDefaults(key: "previewShown") var previewShown = false // false is the default value
+@UserDefaults(\.previewShown) var previewShown = false // false is the default value
 ```
-
-To help you better organize your UserDefaults keys, I've created an `enum` called `DefaultKeys` to store them. Just extend the `enum` and add new keys as `static` properties like this:
 
 ```swift
 extension DefaultKeys {
-  static let previewShown = "previewShown"
+   var previewShown: String { .init("previewShown") }
 }
 ```
 
 > [!NOTE]  
 > You can also store optional values just like that:
 > ```swift
-> @UserDefaults(key: "previewShown") var previewShown: Bool?
+> @UserDefaults(\.previewShown) var previewShown: Bool?
 > ```
 
 ### Custome Container <a name="sub-topic-1.1"></a>
 You can also store your userDefaults in a custome `container` like so: 
 ```swift
-@UserDefaults(key: "previewShown", .init(suiteName: "YourCustomeContainerName")) var previewShown = false
+@UserDefaults(\.previewShown, .init(suiteName: "YourCustomeContainerName")) var previewShown = false
 ```
 ### Supported Data <a name="sub-topic-1.2"></a>
 SwiftUserDefaults supports all of the standard `NSUserDefaults` types, like `String`, `Int`, `Bool`, `Array` and much more.
@@ -79,7 +77,7 @@ Storing custom data types is straightforward; you only need to ensure that the c
 struct CustomeData: DefaultsCustomDataType {
  init()
 }
-@UserDefaults(key: "customeData") var customeData = CustomeData()
+@UserDefaults(\.customeData) var customeData = CustomeData()
 ```
 
 `DefaultsCustomDataType` is a `public` `protocol` that conforms to the `Codable` protocol. It serves as a bridge, allowing the API to easily detect whether this data type needs to be encoded or not.
@@ -91,7 +89,7 @@ Storing an `Enum` is straightforward; simply ensure that the `Enum` conforms to 
 enum CustomeData: DefaultsCustomDataType {
 case none
 }
-@UserDefaults(key: "customeData") var customeData: CustomeData = .none
+@UserDefaults(\.customeData) var customeData: CustomeData = .none
 ```
 ### Example 2 Custom Array type <a name="sub-topic-2.2"></a>
 Storing custom `Array` types is even simpler just ensure that the `Element` type of the `Array` conforms to `DefaultsCustomDataType`, as demonstrated below:
@@ -100,7 +98,7 @@ Storing custom `Array` types is even simpler just ensure that the `Element` type
 struct CustomeData: DefaultsCustomDataType {
 init()
 }
-@UserDefaults(key: "customeData") var customeData: [CustomeData] = [CustomeData()]
+@UserDefaults(\.customeData) var customeData: [CustomeData] = [CustomeData()]
 ```
 And that's all there is to it! 🚀 Enjoy using this Swifty package.
 
