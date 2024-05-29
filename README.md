@@ -10,9 +10,10 @@
 2. [How to use](#section-1)
    - [Custome Container](#sub-topic-1.1)
    - [Supported Data](#sub-topic-1.2)
-4. [Storing Custome Data](#section-2)
+3. [Storing Custome Data](#section-2)
    - [Example 1 Enums](#sub-topic-2.1)
    - [Example 2 Custom Array type](#sub-topic-2.2)
+4. [RemovingStoredObjects](#section-3) 
 5. [Author](#conclusion)
 
 ## Introduction <a name="introduction"></a>
@@ -100,6 +101,30 @@ init()
 }
 @UserDefaults(\.customeData) var customeData: [CustomeData] = [CustomeData()]
 ```
+
+## RemovingStoredObjects <a name="section-3"></a>
+You can also remove the stored value for a specific key using the `DefaultKeys.removeObject(at keyPath: KeyPath<DefaultKeys, String>, _ container: UserDefaults = .standard)`, as demonstrated below:
+
+```swift
+@UserDefaults(\.testKey) var test = 3
+DefaultKeys.removeObject(\.testKey)
+// if you use a custome container provide it to the funcation using this syntax, 
+// DefaultKeys.removeObject(at keyPath: KeyPath<DefaultKeys, String>, _ container: UserDefaults = .standard)
+```
+
+> [!NOTE]  
+> When you call `test` after removing the stored value, it will give the default value which is equal `3` in this case (which is not stored UserDefaults2 store).
+> if it was an `optional` the output will be `nil` in this case.
+
+if you want to delete all the values in the UserDefaults, you can use `DefaultKeys.removeAllUserDefaultsObjects(for container: UserDefaults = .standard)`:
+
+```swift
+@UserDefaults(\.testKey) var test = 3
+DefaultKeys.removeAllUserDefaultsObjects()
+// if you use a custome container provide it to the funcation using this syntax, 
+// DefaultKeys.removeAllUserDefaultsObjects(for container: UserDefaults = .standard)
+```
+
 And that's all there is to it! 🚀 Enjoy using this Swifty package.
 
 ## Author <a name="conclusion"></a>
