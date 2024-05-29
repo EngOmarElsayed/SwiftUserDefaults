@@ -30,3 +30,23 @@ public struct DefaultKeys {
         return current[keyPath: key]
     }
 }
+
+//MARK: -  Removing Stored Objects
+extension DefaultKeys {
+    /// Clears all the objects stored in the specified container. By default it uses the ``.standard`` container.
+    ///
+    /// When you call the variable after removing it, you will get the default value you provided or nil if it was optional.
+    public static func removeAllUserDefaultsObjects(for container: UserDefaults = .standard) {
+        if let domainName = Bundle.main.bundleIdentifier {
+            container.removePersistentDomain(forName: domainName)
+            container.synchronize()
+        }
+    }
+    
+    /// Removes the Value at the specified keyPath.
+    ///
+    /// When you call the variable after removing it, you will get the default value you provided or nil if it was optional.
+    public static func removeObject(at keyPath: KeyPath<DefaultKeys, String>, _ container: UserDefaults = .standard) {
+        container.removeObject(forKey: DefaultKeys[keyPath])
+    }
+}
